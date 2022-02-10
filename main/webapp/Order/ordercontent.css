@@ -5,6 +5,12 @@ body{
 .panel-heading {
     border-color: rgb(23, 162, 184);
     border: 5px;
+    height: 60px;
+}
+
+.panel-title{
+    padding-top:10px;
+    padding-bottom: 10px;
 }
 
 .panel {
@@ -17,6 +23,22 @@ body{
     border-bottom: 0px;
     border-right: 0px;
     border-left: 0px;
+}
+
+.warningredbox, .warningboxexp, .completegreenbox, .completegreenexp{
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(0 0 0 / 5%);
+}
+
+.warningredbox{
+    background:rgb(227, 183, 190);
+    width:30px;
+    height:40px;
+}
+.completegreenbox{
+	background:rgb(214, 233, 198);
+    width:30px;
+    height:40px;
 }
 
 .searchbox{
@@ -122,3 +144,5 @@ body{
 .pagination>li>a, .pagination>li>span{
     color: gray;
 }
+
+
