@@ -6,6 +6,9 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=UTF-8");
 %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +40,21 @@
 	if(orderDTO.getO_num()==0){
 		orderDTO.setO_num(orderDAO.getNext());
 	}
+	if(orderDTO.getDel_date().equals("null")){
+		orderDTO.setDel_date(null);
+	}
+	if(orderDTO.getDue_date().equals("null")){
+		orderDTO.setDue_date(null);
+	}
+	if(orderDTO.getP_e_date().equals("null")){
+		orderDTO.setP_e_date(null);
+	}
+	if(orderDTO.getO_note().equals("null")){
+		orderDTO.setO_note(null);
+	}
 %>
 <% 
-	if(orderDAO.write(orderDTO)>0){%>
+	if(orderDAO.copy(orderDTO)>0){%>
 	<script>alert('완료'); location.href="Order.jsp"</script>
 <%}else{%>
 	<script>alert('실패'); history.back();</script>

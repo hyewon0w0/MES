@@ -1,9 +1,5 @@
 package order;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class orderDTO {
 
 	private String item_no;
@@ -46,7 +42,7 @@ public class orderDTO {
 		this.o_note = o_note;
 		this.img = img;
 		this.o_et_id = o_et_id;
-		this.o_num=o_num;
+		this.o_num = o_num;
 	}
 	
 	public String getItem_no() {
@@ -130,6 +126,14 @@ public class orderDTO {
 	}
 
 	public String getP_e_date() {
+		/*
+		String r_p_e_date = p_e_date;
+		if(p_e_date != null) {
+			r_p_e_date = p_e_date.substring(0,10);
+		}
+		
+		return r_p_e_date;
+		*/
 		return p_e_date;
 	}
 
@@ -138,6 +142,14 @@ public class orderDTO {
 	}
 
 	public String getDue_date() {
+		/*
+		String r_due_date = due_date;
+		if(due_date != null) {
+			r_due_date = due_date.substring(0,10);
+		}
+		
+		return r_due_date;
+		*/
 		return due_date;
 	}
 
@@ -176,6 +188,5 @@ public class orderDTO {
 	public void setO_num(int o_num) {
 		this.o_num = o_num;
 	}
-	
-	
+
 }

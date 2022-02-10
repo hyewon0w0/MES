@@ -20,7 +20,6 @@
 <% 
 	orderDAO dao=new orderDAO();
 	orderDTO dto=null;
-	request.setCharacterEncoding("UTF-8");
 	String itemno=request.getParameter("item_no");
 %>
 </head>
