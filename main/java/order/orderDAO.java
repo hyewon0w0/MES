@@ -15,14 +15,14 @@ public class orderDAO {
 	private static final String USER = "Usera";
 	private static final String PASSWD = "1234";
 
-	// µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á °ü·Ã º¯¼ö ¼±¾ğ
+	// ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ê´€ë ¨ ë³€ìˆ˜ ì„ ì–¸
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs;
 
-	// JDBC µå¶óÀÌ¹ö¸¦ ·ÎµåÇÏ´Â »ı¼ºÀÚ
+	// JDBC ë“œë¼ì´ë²„ë¥¼ ë¡œë“œí•˜ëŠ” ìƒì„±ì
 	public orderDAO() {
-		// JDBC µå¶óÀÌ¹ö ·Îµå
+		// JDBC ë“œë¼ì´ë²„ ë¡œë“œ
 		try {
 			Class.forName(JDBC_DRIVER);
 		} catch(Exception e) {
@@ -32,14 +32,14 @@ public class orderDAO {
 	
 	public void connect() {
 		try {
-			// µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¬°á, Connection °´Ã¼ ÀúÀå 
+			// ë°ì´í„°ë² ì´ìŠ¤ì— ì—°ê²°, Connection ê°ì²´ ì €ì¥ 
 			con = DriverManager.getConnection(JDBC_URL, USER, PASSWD);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	// µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ÇØÁ¦ ¸Ş¼Òµå 
+	// ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° í•´ì œ ë©”ì†Œë“œ 
 	public void disconnect() {
 		if(con != null) {
 			try {
@@ -50,7 +50,7 @@ public class orderDAO {
 		}
 	}
 	
-	//µ¥ÀÌÅÍ ÀÔ·Â(µî·Ï)¹× ¼öÁ¤ ¸Ş¼Òµå 
+	//ë°ì´í„° ì…ë ¥(ë“±ë¡)ë° ìˆ˜ì • ë©”ì†Œë“œ 
 	public int write(orderDTO dto) {
 		int k = 0;
 		
@@ -72,7 +72,7 @@ public class orderDAO {
 			pstmt.setInt(9, dto.getN_price());
 			pstmt.setString(10, dto.getDel_date());
 			pstmt.setString(11, dto.getO_note());
-			pstmt.setString(12, null); //µµ¸éÀÌ¹ÌÁö
+			pstmt.setString(12, null); //ë„ë©´ì´ë¯¸ì§€
 			pstmt.setString(13, dto.getO_et_id());
 			pstmt.setInt(14, dto.getO_num());
 			
@@ -128,10 +128,10 @@ public class orderDAO {
 		return k;
 	}
 	
-	//µ¥ÀÌÅÍ »èÁ¦ ¸Ş¼Òµå 
+	//ë°ì´í„° ì‚­ì œ ë©”ì†Œë“œ 
 	public int delete(String item_no) {
-		String SQL="Delete FROM mes.order WHERE item_no=\'"+item_no+"\'";	// item_no¿¡ µû¸¥ »èÁ¦
-		String NUM_SQL="SELECT order_num FROM mes.order WHERE item_no=\'"+item_no+"\'";	// item_no¿¡ ´ëÇÑ order_num Á¶È¸
+		String SQL="Delete FROM mes.order WHERE item_no=\'"+item_no+"\'";	// item_noì— ë”°ë¥¸ ì‚­ì œ
+		String NUM_SQL="SELECT order_num FROM mes.order WHERE item_no=\'"+item_no+"\'";	// item_noì— ëŒ€í•œ order_num ì¡°íšŒ
 		int num=0;
 		int k = -1;
 		try {
@@ -147,7 +147,7 @@ public class orderDAO {
 				num = rs.getInt(1);
 			}
 			
-			SQL = "{CALL decid("+num+", \'mes.order\', \'order_num\')}";	// »èÁ¦¿¡ µû¸¥ num ÀÚµ¿ °¨¼Ò ÇÁ·Î½ÃÀú
+			SQL = "{CALL decid("+num+", \'mes.order\', \'order_num\')}";	// ì‚­ì œì— ë”°ë¥¸ num ìë™ ê°ì†Œ í”„ë¡œì‹œì €
 			
 			CallableStatement cstmt=con.prepareCall(SQL);
 			cstmt.execute();
@@ -164,7 +164,7 @@ public class orderDAO {
 		return k;
 	}
 	
-	//µ¥ÀÌÅÍ ¸®½ºÆ® Á¶È¸ ¸Ş¼Òµå
+	//ë°ì´í„° ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ ë©”ì†Œë“œ
 	public ArrayList<orderDTO> getOrderList(int pagenum) throws ParseException {	
 		
 		String SQL = "SELECT * FROM mes.order WHERE	order_num<? ORDER BY order_num DESC LIMIT 10";
@@ -193,7 +193,7 @@ public class orderDAO {
 				rs_o.setO_et_id ( rs.getString(15));
 				rs_o.setO_num(rs.getInt(16));
 								
-				//¸®½ºÆ®¿¡ Ãß°¡
+				//ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
 				list.add(rs_o);
 			}
 			rs.close();	
@@ -207,7 +207,7 @@ public class orderDAO {
 		return list;
 	}
 	
-	//µ¥ÀÌÅÍ ¸®½ºÆ® °Ë»ö ¸Ş¼Òµå
+	//ë°ì´í„° ë¦¬ìŠ¤íŠ¸ ê²€ìƒ‰ ë©”ì†Œë“œ
 	public ArrayList<orderDTO> getOrderList2(int pagenum, String txt_where) throws ParseException{
 		ArrayList<orderDTO> list = new ArrayList<orderDTO>();
 		String SQL1="SELECT order_num FROM mes.order"+ txt_where + " ORDER BY order_num desc";
@@ -256,7 +256,7 @@ public class orderDAO {
 				rs_o.setO_et_id ( rs.getString(15));
 				rs_o.setO_num(rs.getInt(16));
 								
-				//¸®½ºÆ®¿¡ Ãß°¡
+				//ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
 				list.add(rs_o);
 			}
 			rs.close();
@@ -269,7 +269,7 @@ public class orderDAO {
 		return list;
 	}
 	
-	// °Ë»öÆĞ³Î - ¼öÁÖÀÏ ½ÃÀÛÀÏÀÚ ¼¼ÆÃ
+	// ê²€ìƒ‰íŒ¨ë„ - ìˆ˜ì£¼ì¼ ì‹œì‘ì¼ì ì„¸íŒ…
 	public String getstartdate() {
 		String SQL="SELECT order_date FROM mes.order order by order_date";
 		String result=null;
@@ -300,7 +300,7 @@ public class orderDAO {
 		return result;
 	}
 	
-	// °ßÀû¼­ ÄŞº¸¹Ú½º µ¥ÀÌÅÍ ¼¼ÆÃ
+	// ê²¬ì ì„œ ì½¤ë³´ë°•ìŠ¤ ë°ì´í„° ì„¸íŒ…
 	public ArrayList<String> getEtid() {
 		ArrayList<String> list = new ArrayList<String>();
 		String SQL="SELECT distinct et_id FROM mes.estimate";
@@ -318,10 +318,10 @@ public class orderDAO {
 		}finally {
 			disconnect();
 		}
-		return list.isEmpty() ? null : list;	//»ïÇ× ¿¬»êÀÚ ºó°ªÀÌ¸é null ¹İÈ¯ ºó°ªÀÌ ¾Æ´Ï¸é list °ª ¹İÈ¯
+		return list.isEmpty() ? null : list;	//ì‚¼í•­ ì—°ì‚°ì ë¹ˆê°’ì´ë©´ null ë°˜í™˜ ë¹ˆê°’ì´ ì•„ë‹ˆë©´ list ê°’ ë°˜í™˜
 	}
 	
-	// °ßÀû¼­ ¼±ÅÃ¿¡ µû¸¥ ¼öÁÖ±İ¾× ¼¼ÆÃ
+	// ê²¬ì ì„œ ì„ íƒì— ë”°ë¥¸ ìˆ˜ì£¼ê¸ˆì•¡ ì„¸íŒ…
 	public int getorderprice(String et_id) {		
 		String SQL = "SELECT et_price FROM mes.estimate WHERE et_id=\'"+et_id+"\' ORDER BY degree desc";
 		int price=0;
@@ -345,7 +345,7 @@ public class orderDAO {
 		return price;
 	}
 	
-	// °ßÀû¼­ ¼±ÅÃ¿¡ µû¸¥ ¾÷Ã¼¸í ¼¼ÆÃ
+	// ê²¬ì ì„œ ì„ íƒì— ë”°ë¥¸ ì—…ì²´ëª… ì„¸íŒ…
 	public String getcompany(String et_id) {	
 		String SQL = "SELECT et_com_id FROM mes.estimate WHERE et_id=\'"+et_id+"\' ORDER BY degree desc";
 
@@ -370,7 +370,7 @@ public class orderDAO {
 		return company;
 	}
 	
-	// ¾÷Ã¼¸í ÄŞº¸¹Ú½º µ¥ÀÌÅÍ ¼¼ÆÃ
+	// ì—…ì²´ëª… ì½¤ë³´ë°•ìŠ¤ ë°ì´í„° ì„¸íŒ…
 	public ArrayList<String> getComid() {
 		ArrayList<String> list = new ArrayList<String>();
 		String SQL="SELECT distinct com_name FROM mes.company";
@@ -388,13 +388,13 @@ public class orderDAO {
 		}finally {
 			disconnect();
 		}
-		return list.isEmpty() ? null : list;	//»ïÇ× ¿¬»êÀÚ ºó°ªÀÌ¸é null ¹İÈ¯ ºó°ªÀÌ ¾Æ´Ï¸é list °ª ¹İÈ¯
+		return list.isEmpty() ? null : list;	//ì‚¼í•­ ì—°ì‚°ì ë¹ˆê°’ì´ë©´ null ë°˜í™˜ ë¹ˆê°’ì´ ì•„ë‹ˆë©´ list ê°’ ë°˜í™˜
 	}
 	
-	// ¼öÁÖ±¸ºĞ ÄŞº¸¹Ú½º µ¥ÀÌÅÍ ¼¼ÆÃ
+	// ìˆ˜ì£¼êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ ë°ì´í„° ì„¸íŒ…
 	public ArrayList<String> getOrderstatus() {
 		ArrayList<String> list = new ArrayList<String>();
-		String SQL = "SELECT sub_code FROM mes.common_code WHERE group_name =\'¿µ¾÷°ü¸®\' AND main_code =\'¼öÁÖÀ¯Çü\'";
+		String SQL = "SELECT sub_code FROM mes.common_code WHERE group_name =\'ì˜ì—…ê´€ë¦¬\' AND main_code =\'ìˆ˜ì£¼ìœ í˜•\'";
 		try {
 			connect();
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -412,10 +412,10 @@ public class orderDAO {
 		return list.isEmpty() ? null : list;
 	}
 	
-	// ºÎÇ°±¸ºĞ ÄŞº¸¹Ú½º µ¥ÀÌÅÍ ¼¼ÆÃ
+	// ë¶€í’ˆêµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ ë°ì´í„° ì„¸íŒ…
 	public ArrayList<String> getPartstatus() {
 		ArrayList<String> list = new ArrayList<String>();
-		String SQL = "SELECT sub_code FROM mes.common_code WHERE group_name =\'ÀÚÀç°ü¸®\' AND main_code =\'ºÎÇ°±¸ºĞ\'";
+		String SQL = "SELECT sub_code FROM mes.common_code WHERE group_name =\'ìì¬ê´€ë¦¬\' AND main_code =\'ë¶€í’ˆêµ¬ë¶„\'";
 		try {
 			connect();
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -433,7 +433,7 @@ public class orderDAO {
 		return list.isEmpty() ? null : list;
 	}
 	
-	// Â÷Á¾ ÄŞº¸¹Ú½º µ¥ÀÌÅÍ ¼¼ÆÃ
+	// ì°¨ì¢… ì½¤ë³´ë°•ìŠ¤ ë°ì´í„° ì„¸íŒ…
 	public ArrayList<String> getCarName() {
 		ArrayList<String> list = new ArrayList<String>();
 		String SQL = "SELECT materials_name FROM mes.materials";
@@ -454,7 +454,7 @@ public class orderDAO {
 		return list.isEmpty() ? null : list;
 	}
 	
-	//¿­ ¹øÈ£ ¼¼ÆÃ
+	//ì—´ ë²ˆí˜¸ ì„¸íŒ…
 	public int getNext() {
 		String SQL = "select order_num from mes.order order by order_num desc";
 		int res = -1;
@@ -480,7 +480,7 @@ public class orderDAO {
 		return res;
 	}
 		
-	//°Ë»ö°á°ú ÃÑ ±İÇü¹øÈ£ÀÇ ¼ö(ÆäÀÌÁö³×ÀÌ¼Ç¿¡¼­ ÀÀ¿ë)
+	//ê²€ìƒ‰ê²°ê³¼ ì´ ê¸ˆí˜•ë²ˆí˜¸ì˜ ìˆ˜(í˜ì´ì§€ë„¤ì´ì…˜ì—ì„œ ì‘ìš©)
 	public int getSearchAmount(String txt_where) {
 				
 		String SQL = "select count(*) as rownum from mes.order" + txt_where;
@@ -507,7 +507,7 @@ public class orderDAO {
 		return nextnum;
 	}	
 	
-	// ¼öÁÖº¹»ç ¸Ş¼Òµå 
+	// ìˆ˜ì£¼ë³µì‚¬ ë©”ì†Œë“œ 
 	public int copy(orderDTO dto) {
 		int k = 0;
 		try {
@@ -517,7 +517,7 @@ public class orderDAO {
 			
 			PreparedStatement pstmt=con.prepareStatement(SQL);
 			
-			pstmt.setString(1, dto.getItem_no()+" - ÀÓ½Ã");
+			pstmt.setString(1, dto.getItem_no()+" - ì„ì‹œ");
 			pstmt.setString(2, dto.getO_com_id());
 			pstmt.setString(3, dto.getO_date());
 			pstmt.setString(4, dto.getO_status());
