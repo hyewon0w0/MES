@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="order.orderDAO" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.ParseException" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=UTF-8");
@@ -40,18 +44,10 @@
 	if(orderDTO.getO_num()==0){
 		orderDTO.setO_num(orderDAO.getNext());
 	}
-	if(orderDTO.getDel_date().equals("null")){
-		orderDTO.setDel_date(null);
-	}
-	if(orderDTO.getDue_date().equals("null")){
-		orderDTO.setDue_date(null);
-	}
-	if(orderDTO.getP_e_date().equals("null")){
-		orderDTO.setP_e_date(null);
-	}
-	if(orderDTO.getO_note().equals("null")){
-		orderDTO.setO_note(null);
-	}
+
+	orderDTO.setO_date(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+	orderDTO.setDel_date(null);
+
 %>
 <% 
 	if(orderDAO.copy(orderDTO)>0){%>

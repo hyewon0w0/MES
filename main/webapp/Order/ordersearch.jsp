@@ -76,6 +76,7 @@
 		}
 		%>
 		<%
+		if(list.isEmpty() == false){
 			// 검색 테이블 세팅
 			for(int i=0; i<list.size(); i++){
 		%>
@@ -98,9 +99,7 @@
 			<td id="ordernum" style='display:none'><%=list.get(i).getO_num()%></td>
 		</tr>
 		<%
-		}
-		%>
-		<% if(list.isEmpty()){ %>
+		}} else{ %>
 		<tr>
 			<td colspan="5" align="center"><div>수주정보가 없습니다.</div></td>
 		</tr>
@@ -109,6 +108,8 @@
 </table>
 <script>
 // 완료 및 비상 처리
+<% 
+if(list.isEmpty() == false){ %>
 $(document).ready(function(){
 	for(var i=1; i<=<%=list.get(0).getO_num() %>; i++){
 		var due_date = $("#"+i).children('#duedate').text();
@@ -138,6 +139,7 @@ $(document).ready(function(){
 		}
 	}
 });
+<% }%>
 </script>
 <ul class="pagination">
 	<li><a class="preanpage">Previous</a></li>
@@ -207,8 +209,8 @@ $(document).ready(function(){
 					$("#orderinsert").show();
 				}
 				
-				if($(this).children('#order_note').text().length != 0){
-					$("#order_note").val($(this).children('#ordernote').text().substr(0,10));
+				if($(this).children('#ordernote').text()!="null"){
+					$("#order_note").val($(this).children('#ordernote').text());
 				}else{
 					$("#order_note").val(null);
 				}

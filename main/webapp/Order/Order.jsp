@@ -33,7 +33,7 @@
         <!--bootstrap-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="ordercontent.css?after">
+        <link rel="stylesheet" href="./ordercontent.css?ver02">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     
     	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -58,7 +58,6 @@
 			var pnum = "1";// 페이지
 			var dates = "";// 수주일
 			var input = "";// 입력 데이터
-
 			$(document).ready(function(){
 				$.ajax({
 					type:"GET",
@@ -106,11 +105,12 @@
 			$("#searchbox").on("keydown",function(e){	// 검색 창에 값이 입력됨에 따른 이벤트 처리
 				if(e.keyCode==13){	// 엔터가 입력 됐을 때 
 					input=$("#searchbox").val();
-					
+					dates=$('input[name="dates"]').val();	
+				
 					$.ajax({
 						type:"GET",
 				        url:"./ordersearch.jsp",
-				        data:{page:"1", input:input},
+				        data:{page:"1", input:input, date:dates},
 				        dataType:"html",
 				        success:function(data){
 				            $("#ordert").html(data);
@@ -332,10 +332,8 @@
 							function dateFormat(date) {
 						        let month = date.getMonth() + 1;
 						        let day = date.getDate();
-
 						        month = month >= 10 ? month : '0' + month;
 						        day = day >= 10 ? day : '0' + day;
-
 						        return date.getFullYear() + '-' + month + '-' + day;
 							}
 							</script>
@@ -366,7 +364,6 @@ $("#order_et_id").on("change",function(e){
 		}
 	});
 });
-
 <!-- 기타 세팅(날짜 입력 세팅) -->
 $(document).on("keyup", "input[name='orderday']", function(e) {
 	$(this).val( $(this).val().replace(/[^0-9-]/gi,"") );
@@ -378,7 +375,6 @@ $(document).on("keyup", "input[name='expectedday']", function(e) {
 	
 	$(this).val(date_mask($(this).val()));
 });
-
 function date_mask(objValue) {
 	 var v = objValue.replace("--", "-");
 	    if (v.match(/^\d{4}$/) !== null) {
