@@ -206,11 +206,7 @@ public class outsourcingDAO {
 			connect();
 			PreparedStatement pstmt = con.prepareStatement(SQL);
 			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				result=rs.getString(1);
-			}else {
-				result="2022-01-01";
-			}
+			result="2022-01-01";
 			
 			rs.close();
 			pstmt.close();

@@ -14,6 +14,8 @@
 	request.setCharacterEncoding("UTF-8");
 
 	int LastListNum=-1;
+	String f = request.getParameter("flag");
+	int flag = Integer.parseInt(f);
 
 	// ajax로 부터 받은 값 저장 
 	String pagenum = request.getParameter("page");
@@ -61,7 +63,7 @@
 		<%
 		// 검색
 		ArrayList<outsourcingDTO> list = null;
-		if(duration==null && input==null){
+		if(flag == 0){
 			list = dao.getOutList(p);
 			LastListNum=dao.getNext()-1;
 		}else{
@@ -97,7 +99,7 @@
 			<td id="type"><%=list.get(i).getType()%></td>
 			<td id="company"><%=list.get(i).getCompany()%></td>	
 			<td id="price"><%=list.get(i).getPrice()%></td>
-			<td id="warehousing_exp_date"><%=list.get(i).getWarehousing_exp_date().substring(0,10)%></td>
+			<td id="warehousing_exp_date"><%=list.get(i).getWarehousing_exp_date()%></td>
 			<td id="faulty"><%=list.get(i).getFaulty()%></td>
 			
 			<td id="outstart_date" style='display:none'><%=list.get(i).getOutstart_date()%></td>
@@ -192,7 +194,7 @@
 		$.ajax({
 			type:"GET",
 			url:"./outsourcingsearch.jsp",
-			data:{page:pnum, date:pdate, input:pinput},
+			data:{page:pnum, date:pdate, input:pinput , flag:"<%=flag%>"},
 			dataType:"html",
 			success:function(data){
 	            $("#outsourcingt").html(data);
@@ -225,7 +227,7 @@
 		$.ajax({
 			type:"GET",
 			url:"./outsourcingsearch.jsp",
-			data:{page:pnum, date:pdate, input:pinput},
+			data:{page:pnum, date:pdate, input:pinput, flag:"<%=flag%>"},
 			dataType:"html",
 			success:function(data){
 	            $("#outsourcingt").html(data);
@@ -281,7 +283,7 @@
 		$.ajax({
 			type:"GET",
 			url:"./outsourchingsearch.jsp",
-			data:{page:pnum, date:pdate, input:pinput},
+			data:{page:pnum, date:pdate, input:pinput, flag:"<%=flag%>"},
 			dataType:"html",
 			success:function(data){
 	            $("#outsourcingt").html(data);

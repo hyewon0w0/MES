@@ -48,7 +48,7 @@
 				$.ajax({
 					type:"GET",
 			        url:"./outsourcingsearch.jsp",
-			        data:{page:pnum},	// 페이지 데이터 넘김
+			        data:{page:pnum, flag:"0"},	// 페이지 데이터 넘김
 			        dataType:"html",
 			        success:function(data){
 			            $("#outsourcingt").html(data);	// 요청 성공 시 ordert에 데이터를 세팅 
@@ -81,7 +81,7 @@
 				$.ajax({
 					type:"GET",
 			        url:"./outsourcingsearch.jsp",
-			        data:{page:"1", date:dates, input:input},	// 페이지=1, 입력한 날짜 및 검색 조건 넘김
+			        data:{page:"1", date:dates, input:input, flag:"1"},	// 페이지=1, 입력한 날짜 및 검색 조건 넘김
 			        dataType:"html",
 			        success:function(data){
 			            $("#outsourcingt").html(data);
@@ -98,7 +98,7 @@
 					$.ajax({
 						type:"GET",
 				        url:"./outsourcingsearch.jsp",
-				        data:{page:"1", input:input, date:dates},
+				        data:{page:"1", input:input, date:dates, flag:"1"},
 				        dataType:"html",
 				        success:function(data){
 				            $("#outsourcingt").html(data);
