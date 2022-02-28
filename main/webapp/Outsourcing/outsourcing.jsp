@@ -1,4 +1,4 @@
-<!-- 업체관리 메인 jsp -->
+<!-- 외주관리 메인 jsp -->
 <%@ page import="javax.security.auth.callback.ConfirmationCallback" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
@@ -123,9 +123,12 @@
 			            }
 			           });
 				});
-				alert("성공");
-				location.reload();
-				
+				if(this.value!=null){
+					alert("성공");
+					location.reload();
+				}else{
+					alert("실패");
+				}
 			});
 			
 			</script>

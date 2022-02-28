@@ -102,6 +102,8 @@
 			
 			<td id="outstart_date" style='display:none'><%=list.get(i).getOutstart_date()%></td>
 			<td id="endstart_date" style='display:none'><%=list.get(i).getOutend_date()%></td>
+			<td id="worker" style='display:none'><%=list.get(i).getWorker()%></td>
+			<td id="reg_date" style='display:none'><%=list.get(i).getReg_date()%></td>
 		</tr>
 		<%
 		}} else{ %>
