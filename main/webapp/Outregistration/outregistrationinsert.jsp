@@ -22,12 +22,11 @@
 	String [] arr_start_date=request.getParameterValues("outstart_date");
 	String [] arr_end_date=request.getParameterValues("outend_date");
 	String [] arr_faulty=request.getParameterValues("faulty");
-	
-	for(int j=0; j<arr_faulty.length; j++){
-		System.out.println(arr_faulty[j]);
-	}
-	
+
+	if(arr_id!=null){
 	for(int i=0; i<arr_order.length; i++){
+		
+		System.out.println(arr_id[i]);
 %>
  		<jsp:useBean id="dto" class="outregistration.outregistrationDTO"/>
 		<jsp:setProperty name="dto" property="outsourcing_no" value='<%=Integer.parseInt(arr_id[i])%>'/>
@@ -73,14 +72,16 @@
 		outregistrationDAO.write(dto);
 	
 		 }
+	}
 		
 		outregistrationDAO.clearFaulty();
 		
 	// 불량 입력 및 업데이트
+	if(arr_faulty!=null){
 		for(int i=0; i<arr_faulty.length; i++){
 			outregistrationDAO.settingFaulty(Integer.parseInt(arr_faulty[i]));
 		}
-
+	}
 		 
 		 if(true){	
 %>

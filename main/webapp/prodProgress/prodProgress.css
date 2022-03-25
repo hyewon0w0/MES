@@ -1,0 +1,208 @@
+@charset "UTF-8";
+body{
+    background: rgb(238, 237, 237);
+}
+
+.panel-heading {
+    border-color: rgb(23, 162, 184);
+    border: 5px;
+    height: 60px;
+}
+
+.panel-title{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.panel {
+    box-shadow: 3px 3px 3px rgb(0 0 0 / 5%);
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 0.5vw;
+
+    border:3px solid rgb(23, 162, 184);
+    border-bottom: 0px;
+    border-right: 0px;
+    border-left: 0px;
+}
+
+.searchbox{
+    width: 98vw;
+}
+
+.panel-body{
+    font-weight: bold;
+}
+
+.listbox{
+    margin: 0px;
+    padding: 0px;
+    width: 98vw;
+}
+
+#pptablediv{
+	overflow-x: auto;
+	max-width:100%;
+	margin-bottom: 20px;
+}
+
+#detailtablediv{
+	overflow-x: auto;
+	max-width:100%;
+}
+
+.pptable{
+    width:auto;
+    border-collapse: separate;
+    white-space: nowrap;
+    margin-bottom: 0px;
+}
+
+.pptable>tbody>tr>td, .pptable>tbody>tr>th, .pptable>tfoot>tr>td, .pptable>tfoot>tr>th, .pptable>thead>tr>td, .pptable>thead>tr>th{
+    border: none;
+    
+    border-right-width: 1px;
+    border-right-color: rgb(221, 221, 221);
+    border-right-style: solid;
+
+}
+
+.pptable th, .pptable td{
+    width: 7vw;
+    height: 36px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.pptableheaddiv{
+    height: 36px; padding: 8px;
+}
+
+.expdayinput{
+	width: 100px;
+	text-align: center;
+	border: 0px;
+}
+
+.tablehead{
+    background: rgb(23, 162, 184);
+    color: white;
+}
+
+.tablecontent{
+    font-weight: normal;
+}
+
+.detailTable{
+    width:auto;
+    border-collapse: separate;
+    border: none;
+    white-space: nowrap;
+}
+
+.detailTable > tbody > tr> td{
+    border-radius: 10px;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+.detailTable td{
+    font-size: medium;
+}
+
+.btn-primary{
+    background: rgb(23, 162, 184);
+    border: 0px;
+}
+
+.btn-danger{
+    border: 0px;
+    background: #d9534f
+}
+
+.btn-default{
+    border: 0px;
+    background: rgb(120, 120, 120);
+    color: white;
+    padding: 9px 18px;
+}
+
+.combobox{
+    width: 15%;
+    display: table-cell;
+}
+
+.row{
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.statusbox{
+    box-shadow: 3px 3px 3px rgb(0 0 0 / 5%);
+    padding-right: 5px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.readybox{
+    background:rgb(155, 155, 155);
+    border-radius: 5px;
+    width:25px;
+    height:20px;
+    color: white;
+    text-align: center;
+}
+.progbox{
+   background:rgb(70, 211, 191);
+    border-radius: 5px;
+    width:25px;
+    height:20px;
+    color: white;
+    text-align: center;
+}
+.completebox{
+    background:rgb(94, 169, 255);
+    border-radius: 5px;
+    width:25px;
+    height:20px;
+    color: white;
+    text-align: center;
+}
+.faultybox{
+   background:rgb(255, 120, 143);
+    border-radius: 5px;
+    width:25px;
+    height:20px;
+    color: white;
+    text-align: center;
+}
+.outbox, .orderbox{
+    background:rgb(255, 255, 255);
+    border-radius: 5px;
+    border-style: dashed;
+    width:25px;
+    height:20px;
+    text-align: center;
+}
+.btn-common{
+    background: rgb(108, 117, 125);
+    border: 0px;
+    color: white;
+}
+.modal-dialog{
+    width:800px;
+}
+.orderI_col3{
+    display:inline-block;
+    zoom:1;
+    width: 31%;
+    margin-right:12px;
+    align-items: center;
+}
+
+.orderI_col4{
+    display:inline-block;
+    zoom:1;
+    width: 22%;
+    margin-right:17px;
+    align-items: center;
+}

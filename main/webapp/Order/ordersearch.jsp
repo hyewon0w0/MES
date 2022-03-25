@@ -151,11 +151,7 @@ $(document).ready(function(){
 		}
 		
 		int startpage = (block-1) * 5 + 1;
-		int endpage = ((LastListNum-1)/10);
-		
-		if(LastListNum%10 != 0 || endpage == 0){
-			endpage += 1;
-		}
+		int endpage = ((LastListNum-1)/10) + 1;
 		
 		int endexpage = endpage;
 		
