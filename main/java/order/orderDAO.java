@@ -394,7 +394,7 @@ public class orderDAO {
 	// 수주구분 콤보박스 데이터 세팅
 	public ArrayList<String> getOrderstatus() {
 		ArrayList<String> list = new ArrayList<String>();
-		String SQL = "SELECT sub_code FROM mes.common_code WHERE group_name =\'영업관리\' AND main_code =\'수주유형\'";
+		String SQL = "SELECT sub_code FROM mes.code_sub WHERE main_code =\'수주유형\'";
 		try {
 			connect();
 			PreparedStatement pstmt = con.prepareStatement(SQL);
@@ -415,7 +415,7 @@ public class orderDAO {
 	// 부품구분 콤보박스 데이터 세팅
 	public ArrayList<String> getPartstatus() {
 		ArrayList<String> list = new ArrayList<String>();
-		String SQL = "SELECT sub_code FROM mes.common_code WHERE group_name =\'자재관리\' AND main_code =\'부품구분\'";
+		String SQL = "SELECT sub_code FROM mes.code_sub WHERE main_code =\'부품구분\'";
 		try {
 			connect();
 			PreparedStatement pstmt = con.prepareStatement(SQL);

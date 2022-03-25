@@ -283,13 +283,6 @@ public class outregistrationDAO {
 			
 			k=pstmt.executeUpdate();
 			
-			SQL = "{CALL decid("+num+", \'mes.outsourcing\', \'outsourcing_no\')}";	// 삭제에 따른 num 자동 감소 프로시저
-		
-			CallableStatement cstmt=con.prepareCall(SQL);
-			cstmt.execute();
-			
-			rs.close();
-			cstmt.close();
 			pstmt.close();
 		}catch(Exception e) {
 			e.printStackTrace();
