@@ -230,18 +230,8 @@
 									</select>
 								</div>
 								<div class="form-group car">
-									<label for="order_car">차종<span style="color: red;">*</span></label>
-									<!-- 차종 콤보박스 세팅 -->
-									<select id="car_name" name="car" class="form-control">
-										<%
-										ArrayList<String> CarName_list=orderDAO.getCarName();
-										for(int i=0; i<CarName_list.size(); i++){
-										%>
-											<option value= "<%= CarName_list.get(i) %>"><%= CarName_list.get(i) %></option>
-										<%
-												}
-										%>
-									</select>
+									<label for="order_car">기타<span style="color: red;">*</span></label>
+									<input type="text" id="car_name" name="car" class="form-control">
 								</div>
 							</td>
 						</tr>
